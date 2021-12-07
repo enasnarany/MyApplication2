@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         String domain = splitString[1];
         String[] spiltusername = username.split("");
         if (spiltusername.length != 1) {
-            Toast.makeText(context this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Context this, "username or password are incorrect", Toast.LENGTH_SHORT);show();
             return false;
         }
         char first = username.charAt(0);
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         if (countsmall == 0 || countcapital == 0 || countwildcard == 0 || countnumber == 0) {
-            Toast.makeText(this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"username or password are incorrect", Toast.LENGTH_SHORT).show();
 
             return false;
 

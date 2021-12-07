@@ -1,14 +1,14 @@
 package com.example.myapplication;
 enum ProductCategory
 {
-    lipsticks, creams, makeup ,
+    lipsticks, creams, makeup
 }
 
 public class Product {
     private String name;
     private String photo;
     private String size;
-    private Private<color> colors;
+    private String color;
     private String appearance;
 
     public Product(String name, String photo, String size, String appearance)
@@ -16,7 +16,7 @@ public class Product {
         this.name = name;
         this.photo = photo;
         this.size = size;
-        this.colors = colors;
+        this.color= color;
         this.appearance = appearance;
     }
 
@@ -44,12 +44,12 @@ public class Product {
         this.size = size;
     }
 
-    public Private<color> getColors() {
+    public String getColor() {
         return color;
     }
 
-    public void setColors(Private<color> colors) {
-        this.colors= colors;
+    public void setColor(String color) {
+        this.color= color;
     }
 
     public String getAppearance() {

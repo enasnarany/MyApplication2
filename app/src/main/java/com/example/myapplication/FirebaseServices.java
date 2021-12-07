@@ -1,27 +1,31 @@
 package com.example.myapplication;
 
-    public class FirebaseServices {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+
+public class FirebaseServices {
         private static FirebaseServices instance;
-        private FirebaseServices auth;
-        private FirebaseServices firestore;
-        private FirebaseServices storage;
+        private FirebaseAuth auth;
+        private FirebaseFirestore firestore;
+        private FirebaseStorage storage;
 
         public FirebaseServices getAuth() {
-            return auth;
+            return instance;
         }
 
-        public FirebaseServices getFirestore() {
+        public FirebaseFirestore getFirestore() {
             return firestore;
         }
 
-        public FirebaseServices getStorage() {
+        public FirebaseStorage getStorage() {
             return storage;
         }
 
         public FirebaseServices() {
-            auth = FirebaseServices.getInstance();
-            firestore = FirebaseServices.getInstance();
-            storage = FirebaseServices.getInstance();
+            auth = FirebaseAuth.getInstance();
+            firestore = FirebaseFirestore.getInstance();
+            storage = FirebaseStorage.getInstance();
         }
 
         public static FirebaseServices getInstance() {

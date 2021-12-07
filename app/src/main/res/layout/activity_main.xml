@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EAE4E4"
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign up"
-        tools:layout_editor_absoluteX="107dp"
-        tools:layout_editor_absoluteY="284dp" />
+        android:id="@+id/etLogin"
+        android:layout_width="121dp"
+        android:layout_height="60dp"
+        android:background="#E4C0C0"
+        android:backgroundTint="#9A8282"
+        android:text="Log in"
+        tools:layout_editor_absoluteX="82dp"
+        tools:layout_editor_absoluteY="314dp" />
 
     <EditText
         android:id="@+id/etUsernameMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="215dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#9F6868"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="123dp" />
+        tools:layout_editor_absoluteY="164dp" />
 
     <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/etpasswordmain"
+        android:layout_width="217dp"
+        android:layout_height="53dp"
+        android:backgroundTint="#9F6868"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
         tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="194dp" />
+        tools:layout_editor_absoluteY="240dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

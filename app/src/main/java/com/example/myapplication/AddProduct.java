@@ -2,7 +2,9 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 
@@ -22,8 +24,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class AddProduct extends AppCompatActivity {
 
@@ -32,6 +38,10 @@ public class AddProduct extends AppCompatActivity {
     private Spinner spCat;
     private ImageView ivPhoto;
     private FirebaseServices fbs;
+    private Uri filePath;
+    StorageReference storageReference;
+
+
 
 
     @Override
@@ -43,12 +53,15 @@ public class AddProduct extends AppCompatActivity {
 
     private void connectComponents() {
         etName = findViewById(R.id.etName);
-        etSize=findViewById(R.id.etSize)
+        etSize=findViewById(R.id.etSize);
         etPrice = findViewById(R.id.etPrice);
-        etProducttype=findViewById(R.id.etProuducttype)
-        spCat = findViewById();
-        etCategory=findViewById(R.id.etCategory)
+        etProducttype=findViewById(R.id.etProuducttype);
+        ivPhoto = findViewById(R.id.ivphoto);
+        etCategory=findViewById(R.id.etCategory);
         fbs = FirebaseServices.getInstance();
+        spCat.setAdapter(new ArrayAdapter<ProductCategory>(this, android.R.layout.simple_list_item_1,ProductCategory.values()));
+        storageReference = fbs.getStorage().getReference();
+
     }
 
     public void add(View view) {
@@ -71,9 +84,8 @@ public class AddProduct extends AppCompatActivity {
         }
 
         Product product = new Product (name,Size, category, Price);
-
         fbs.getFirestore().collection("Products")
-                .add(product)
+               .add(product)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 
                     @Override
@@ -102,7 +114,12 @@ public class AddProduct extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
                     try {
+                        filePath = data.getData();
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+                        ivPhoto.setBackground(null);
+                        ivPhoto.setImageBitmap(bitmap);
+                        uploadImage();
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -112,6 +129,79 @@ public class AddProduct extends AppCompatActivity {
             }
         }
     }
-}
 
+    private void uploadImage()
+    {
+        if (filePath != null) {
+
+            // Code for showing progressDialog while uploading
+            ProgressDialog progressDialog
+                    = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            // Defining the child of storageReference
+            StorageReference ref
+                    = storageReference
+                    .child(
+                            "images/"
+                                    + UUID.randomUUID().toString());
+
+            // adding listeners on upload
+            // or failure of image
+            ref.putFile(filePath)
+                    .addOnSuccessListener(
+                            new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                                @Override
+                                public void onSuccess(
+                                        UploadTask.TaskSnapshot taskSnapshot)
+                                {
+
+                                    // Image uploaded successfully
+                                    // Dismiss dialog
+                                    progressDialog.dismiss();
+                                    Toast
+                                            .makeText(AddProduct.this,
+                                                    "Image Uploaded!!",
+                                                    Toast.LENGTH_SHORT)
+                                            .show();
+                                }
+                            })
+
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+
+                            // Error, Image not uploaded
+                            progressDialog.dismiss();
+                            Toast
+                                    .makeText(AddProduct.this,
+                                            "Failed " + e.getMessage(),
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    })
+                    .addOnProgressListener(
+                            new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                // Progress Listener for loading
+                                // percentage on the dialog box
+                                @Override
+                                public void onProgress(
+                                        UploadTask.TaskSnapshot taskSnapshot)
+                                {
+                                    double progress
+                                            = (100.0
+                                            * taskSnapshot.getBytesTransferred()
+                                            / taskSnapshot.getTotalByteCount());
+                                    progressDialog.setMessage(
+                                            "Uploaded "
+                                                    + (int)progress + "%");
+                                }
+                            });
+        }
+    }
+}
 
