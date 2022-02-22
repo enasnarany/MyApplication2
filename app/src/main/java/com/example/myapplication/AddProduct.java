@@ -3,7 +3,6 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -13,7 +12,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.util.Size;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -56,7 +54,7 @@ public class AddProduct extends AppCompatActivity {
         etSize=findViewById(R.id.etSize);
         etPrice = findViewById(R.id.etPrice);
         etProducttype=findViewById(R.id.etProuducttype);
-        ivPhoto = findViewById(R.id.ivphoto);
+        ivPhoto = findViewById(R.id.ivPhotoAddProduct);
         etCategory=findViewById(R.id.etCategory);
         fbs = FirebaseServices.getInstance();
         spCat.setAdapter(new ArrayAdapter<ProductCategory>(this, android.R.layout.simple_list_item_1,ProductCategory.values()));

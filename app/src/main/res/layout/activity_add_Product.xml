@@ -37,7 +37,7 @@
         tools:layout_editor_absoluteY="407dp" />
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/ivphoto"
+        android:id="@+id/ivPhotoAddProduct"
         android:layout_width="166dp"
         android:layout_height="170dp"
         tools:layout_editor_absoluteX="103dp"

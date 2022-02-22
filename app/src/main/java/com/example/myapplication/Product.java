@@ -5,10 +5,12 @@ enum ProductCategory
 }
 
 public class Product {
+    private String Description;
     private String name;
     private String photo;
     private String size;
     private String color;
+    private String price;
     private String appearance;
 
     public Product(String name, String photo, String size, String appearance)

@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                         if (Task.isSuccessful()) {
-                             else {
+                             else{
                             Toast.makeText(MainActivity.this, "Username or password is empty!", Toast.LENGTH_SHORT).show();
-                            return;
+                                   JH GGHreturn;
                         }
 
 
