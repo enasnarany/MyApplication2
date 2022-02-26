@@ -8,15 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProductDetailsActivity extends AppCompatActivity {
-    private TextView tvName, tvDescription, tvAddress, tvCategory, tvPhone;
+    private TextView tvcolordetails, tvDescription, tvprice, tvSize, tvtype;
     private ImageView ivPhoto;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details_product);
-    }
-
 
     /*
         private String address;
@@ -26,28 +19,36 @@ public class ProductDetailsActivity extends AppCompatActivity {
     * */
 
     @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_details_product);
+    }
+
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_product);
 
         connectComponents();
         Intent i = this.getIntent();
-        Product = (Product) i.getSerializableExtra("rest");
+        Product product = (Product) i.getSerializableExtra("product");
 
-        tvName.setText(Product.getName());
+        tvtype.setText(product.gettype());
         tvDescription.setText(Product.getDescription());
-        tvAddress.setText(Product.getAddress());
-        tvCategory.setText(Product.getCategory().toString());
-        tvPhone.setText(Product.getPhone());
+        tvcolordetails.setText(Product.getcolordetails());
+        tvSize.setText(Product.getSize().toString());
+        tvprice.setText(Product.getprice());
         Picasso.get().load(Product.getPhoto()).into(ivPhoto);
     }
 
     private void connectComponents() {
-        tvName = findViewById(R.id.tvNameRestDetails);
-        tvDescription = findViewById(R.id.tvDescriptionRestDetails);
-        tvAddress = findViewById(R.id.tvAddressRestDetails);
-        tvCategory = findViewById(R.id.tvCategoryRestDetails);
-        tvPhone = findViewById(R.id.tvPhoneRestDetails);
+        tvcolordetails = findViewById(R.id.tvcolordetails);
+        tvDescription = findViewById(R.id.tvDescriptiondetails);
+        tvtype = findViewById(R.id.tvtypeditails);
+        tvprice = findViewById(R.id.tvpricedetails);
+        tvSize = findViewById(R.id.tvSizeoroductDetails);
         ivPhoto = findViewById(R.id.ivPhotoProductRow);
     }
 }

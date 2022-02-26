@@ -11,9 +11,13 @@ public class Product {
     private String size;
     private String color;
     private String price;
+    private String type;
+    private String description;
+    private String Price;
+
     private String appearance;
 
-    public Product(String name, String photo, String size, String appearance)
+    public Product(String name, String photo, String size, String appearance,String type,String description,String price)
     {
         this.name = name;
         this.photo = photo;
@@ -61,6 +65,13 @@ public class Product {
     public void setAppearance(String appearance) {
         this.appearance = appearance;
     }
+
+    private void gettype(String type){this.type = type;}
+
+    private void getDescription(String description){this.description = description;}
+
+    private void setDescription(String description){this.description=description}
+
 
     @Override
     public String toString() {

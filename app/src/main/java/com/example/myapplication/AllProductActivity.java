@@ -40,7 +40,7 @@ class AllProductActivity extends AppCompatActivity {
             @Override
             public void onCallback(List<Product> attractionsList) {
             }
-        }
+        };
 
             // set up the RecyclerView
             RecyclerView recyclerView = findViewById(R.id.tvNameProductRow);
@@ -67,13 +67,9 @@ class AllProductActivity extends AppCompatActivity {
 
                             myCallback.onCallback(products);
                         } else {
-                            Log.e("AllProductActivity: readData()", "Error getting documents.", task.getException());
+                            Log.e("AllActivity: readData()", "Error getting documents.", task.getException());
                         }
                     }
                 });
-    }
-    catch (Exception e)
-    {
-        Toast.makeText(this, "error reading!" + e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }
