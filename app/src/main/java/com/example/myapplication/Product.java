@@ -70,7 +70,7 @@ public class Product {
 
     private void getDescription(String description){this.description = description;}
 
-    private void setDescription(String description){this.description=description}
+    private void setDescription(String description){this.description=description;}
 
 
     @Override
