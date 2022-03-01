@@ -38,8 +38,7 @@ public class AddProduct extends AppCompatActivity {
     private FirebaseServices fbs;
     private Uri filePath;
     StorageReference storageReference;
-
-
+    private String description;
 
 
     @Override
@@ -64,10 +63,13 @@ public class AddProduct extends AppCompatActivity {
 
     public void add(View view) {
         // check if any field is empty
-        String name, Color, Size,Price, photo,category;
+        String name,type, Color, Size,Price, photo,category;
         name = etName.getText().toString();
         Color = etColor.getText().toString();
+        type = etProducttype.getText().toString();
         Size = etSize.getText().toString();
+        description =
+
         Price = etPrice.getText().toString();
         category = spCat.getSelectedItem().toString();
         if (ivPhoto.getDrawable() == null)
@@ -81,7 +83,7 @@ public class AddProduct extends AppCompatActivity {
             return;
         }
 
-        Product product = new Product (name,Size, category, Price);
+        Product product = new Product (name,photo,Size,Color,Price,type,description);
         fbs.getFirestore().collection("Products")
                .add(product)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

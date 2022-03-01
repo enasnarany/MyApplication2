@@ -35,12 +35,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         Intent i = this.getIntent();
         Product product = (Product) i.getSerializableExtra("product");
 
-        tvtype.setText(product.gettype());
-        tvDescription.setText(Product.getDescription());
-        tvcolordetails.setText(Product.getcolordetails());
+        tvtype.setText(product.getType());
+        tvDescription.setText(product.getDescription());
+        tvcolordetails.setText(Product.getcolor());
         tvSize.setText(Product.getSize().toString());
         tvprice.setText(Product.getprice());
-        Picasso.get().load(Product.getPhoto()).into(ivPhoto);
+        Picasso.get().load(product.getPhoto()).into(ivPhoto);
+
     }
 
     private void connectComponents() {

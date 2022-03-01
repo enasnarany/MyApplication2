@@ -1,4 +1,7 @@
 package com.example.myapplication;
+
+import android.util.Size;
+
 enum ProductCategory
 {
     lipsticks, creams, makeup
@@ -13,18 +16,39 @@ public class Product {
     private String price;
     private String type;
     private String description;
-    private String Price;
 
-    private String appearance;
 
-    public Product(String name, String photo, String size, String appearance,String type,String description,String price)
-    {
+    public Product(String name, String photo, String size, String color, String price, String type, String description) {
+    }
+
+    public Product(String description, String name, String photo, String size, String color, String price, String type, String description1, String appearance) {
+        this.Description = description;
         this.name = name;
         this.photo = photo;
         this.size = size;
-        this.color= color;
-        this.appearance = appearance;
+        this.color = color;
+        this.price = price;
+        this.type = type;
+        this.description = description1;
+
     }
+
+    public static int getprice() {
+        return 0;
+    }
+
+    public static int getcolor() {
+        return 0;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
 
     public String getName() {
         return name;
@@ -34,7 +58,7 @@ public class Product {
         this.name = name;
     }
 
-    public String getPhoto() {
+    public static String getPhoto() {
         return photo;
     }
 
@@ -42,8 +66,8 @@ public class Product {
         this.photo = photo;
     }
 
-    public String getSize() {
-        return size;
+    public static String getSize() {
+        return Size;
     }
 
     public void setSize(String size) {
@@ -55,32 +79,37 @@ public class Product {
     }
 
     public void setColor(String color) {
-        this.color= color;
+        this.color = color;
     }
 
-    public String getAppearance() {
-        return appearance;
+    public String getPrice() {
+        return price;
     }
 
-    public void setAppearance(String appearance) {
-        this.appearance = appearance;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    private void gettype(String type){this.type = type;}
+    public String getType() {
+        return type;
+    }
 
-    private void getDescription(String description){this.description = description;}
-
-    private void setDescription(String description){this.description=description;}
-
+    public void setType(String type) {
+        this.type = type;
+    }
 
     @Override
     public String toString() {
         return "Product{" +
-                "name='" + name + '\'' +
+                "Description='" + Description + '\'' +
+                ", name='" + name + '\'' +
                 ", photo='" + photo + '\'' +
                 ", size='" + size + '\'' +
-                ", colors=" + color +
-                ", appearance='" + appearance + '\'' +
+                ", color='" + color + '\'' +
+                ", price='" + price + '\'' +
+                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
+
