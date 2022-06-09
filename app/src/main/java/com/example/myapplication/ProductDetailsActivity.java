@@ -19,14 +19,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     * */
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details_product);
-    }
-
-
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_product);
@@ -37,10 +29,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         tvtype.setText(product.getType());
         tvDescription.setText(product.getDescription());
-        tvcolordetails.setText(Product.getcolor());
-        tvSize.setText(Product.getSize().toString());
-        tvprice.setText(Product.getprice());
-        Picasso.get().load(product.getPhoto()).into(ivPhoto);
+        tvcolordetails.setText(product.getColor());
+        tvSize.setText(product.getSize());
+        tvprice.setText(product.getprice());
+        //Picasso.get().load(product.getPhoto()).into(ivPhoto);
 
     }
 

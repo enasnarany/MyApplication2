@@ -44,7 +44,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         Product rest = mData.get(position);
         holder.tvName.setText(rest.getName());
         //holder.ivPhoto.setImageDrawable(product.getPhoto());
-        Picasso.get().load(rest.getPhoto()).into(holder.ivPhoto);
+        //Picasso.get().load(rest.getPhoto()).into(holder.ivPhoto);
     }
 
     // total number of rows

@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        // TODO: add auth login...
+        /*
         auth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -44,17 +46,22 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void OnCoplete(@NonNull Task<AuthResult> task) {
-                }
+                    }
 
-                        if (Task.isSuccessful()) {
+                        if(Task.isSuccessful())
+
+                    {
                              else{
-                            Toast.makeText(MainActivity.this, "Username or password is empty!", Toast.LENGTH_SHORT).show();
-                                   JH GGHreturn;
-                        }
+                        Toast.makeText(MainActivity.this, "Username or password is empty!", Toast.LENGTH_SHORT).show();
+                        JH GGHreturn;
+                    }
 
 
                     }
 
+                    ;
+                }*/
+    }
 
 
     public boolean varifyEmail(String email) {
@@ -69,28 +76,28 @@ public class MainActivity extends AppCompatActivity {
         String domain = splitString[1];
         String[] spiltusername = username.split("");
         if (spiltusername.length != 1) {
-            Toast.makeText(Context this, "username or password are incorrect", Toast.LENGTH_SHORT);show();
+            Toast.makeText(MainActivity.this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
             return false;
         }
         char first = username.charAt(0);
         if (!(first >= 'a' & first <= 'z' || first == '_')) {
-            Toast.makeText(this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (username.length() > 70) {
-            Toast.makeText(this, "incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "incorrect", Toast.LENGTH_SHORT).show();
             return false;
 
         }
         if (username.length() < 3) {
-            Toast.makeText(this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
             return false;
         }
         for (int i = 0; i < username.length(); i++) {
             char p = username.charAt(i);
             if (!(p >= 'a' & p <= 'z' || p <= 'A' & p <= 'z' || p == '_' || p >= '0' & p <= '9')) {
-                Toast.makeText(this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -100,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         char firstd = domain.charAt(0);
         if (!(firstd>='a' & firstd<='z' || firstd=='_' || firstd>= 'A' & firstd<'Z')){
-            Toast.makeText(this,"Username or email is false check again",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"Username or email is false check again",Toast.LENGTH_SHORT).show();
             return false;
         }
         String[] dot = domain.split(".");
@@ -108,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0 ; i < laststring.length() ; i ++){
             char p = laststring.charAt(i);
             if (!(p>='a' & p<='z' || p>='A' & p<='Z')){
-                Toast.makeText(this,"username or email is false check again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"username or email is false check again", Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
@@ -118,11 +125,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean validatePassword(String password) {
         int countsmall = 0, countcapital = 0, countwildcard = 0, countnumber = 0;
         if (password.length() > 30) {
-            Toast.makeText(this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (password.length() < 8) {
-            Toast.makeText(this, "username or password are incorrect ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "username or password are incorrect ", Toast.LENGTH_SHORT).show();
             return false;
         }
         for (int i = 0; i < password.length(); i++) {
@@ -136,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         if (countsmall == 0 || countcapital == 0 || countwildcard == 0 || countnumber == 0) {
-            Toast.makeText(this,"username or password are incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"username or password are incorrect", Toast.LENGTH_SHORT).show();
 
             return false;
 

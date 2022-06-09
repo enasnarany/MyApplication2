@@ -33,11 +33,11 @@ public class Product {
 
     }
 
-    public static int getprice() {
+    public int getprice() {
         return 0;
     }
 
-    public static int getcolor() {
+    public int getcolor() {
         return 0;
     }
 
@@ -58,16 +58,16 @@ public class Product {
         this.name = name;
     }
 
-    public static String getPhoto() {
-        return photo;
+    public String getPhoto() {
+        return this.photo;
     }
 
     public void setPhoto(String photo) {
         this.photo = photo;
     }
 
-    public static String getSize() {
-        return Size;
+    public String getSize() {
+        return this.size;
     }
 
     public void setSize(String size) {
