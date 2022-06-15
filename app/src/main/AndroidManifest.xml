@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".AllProduct"
+            android:name=".AllProductActivity"
             android:exported="false" />
         <activity
-            android:name=".AddRestActivity"
+            android:name=".AddProduct"
             android:exported="false" />
         <activity
             android:name=".ImageView"

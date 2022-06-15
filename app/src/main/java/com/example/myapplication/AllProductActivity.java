@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -72,4 +73,10 @@ class AllProductActivity extends AppCompatActivity {
                     }
                 });
     }
-}
+    public boolean onCreateOptionsMenu(View view) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
+
+
+
