@@ -2,11 +2,13 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
@@ -70,12 +72,13 @@ class AllProductActivity extends AppCompatActivity {
                         } else {
                             Log.e("AllActivity: readData()", "Error getting documents.", task.getException());
                         }
+
                     }
                 });
+
     }
-    public boolean onCreateOptionsMenu(View view) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
-        return true;
+
+
     }
 
 

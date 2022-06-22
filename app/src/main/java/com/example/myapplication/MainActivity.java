@@ -2,7 +2,10 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsernameMain);
         etPassword = findViewById(R.id.etpasswordmain);
         auth = FirebaseAuth.getInstance();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    public boolean onCreateOptionsMenu(android.view.View view)
+    {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.example_menu,menu);
+        return true;
     }
 
 
@@ -149,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return true;
+
+
     }
     }
 
