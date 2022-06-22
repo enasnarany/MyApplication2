@@ -33,10 +33,13 @@ public class SignupActivity2 extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_signup2);
         }
+        private connectComponents(){
+            etUsername = findViewById(R.id.etUsername);
+            etPassword  = findViewById(R.id.etpassword);
+        }
 
 
         public void signup (View view){
-            //todo 1- get data from screen
             String username = etUsername.getText().toString();
             String password = etPassword.getText().toString();
             String confirmPassword = etConfirmPassword;
@@ -48,7 +51,6 @@ public class SignupActivity2 extends AppCompatActivity {
                 Toast.makeText(this, "Password do not match!!", Toast.LENGTH_SHORT).show();
                 return;
             }
-            // TODO: 3- Check username and password with Firebase Authentication
             auth.createUserWithEmailAndPassword(username, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
