@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Signup"
+        android:onClick="signup"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="340dp" />
 

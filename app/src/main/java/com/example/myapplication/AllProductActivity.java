@@ -1,20 +1,17 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
+import android.view.MenuItem;
 
-import com.example.myapplication.Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -42,19 +39,46 @@ class AllProductActivity extends AppCompatActivity {
         myCallback = new MyCallback() {
             @Override
             public void onCallback(List<Product> attractionsList) {
+                // set up the RecyclerView
+                RecyclerView recyclerView = findViewById(R.id.tvNameProductRow);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                adapter = new AdapterProduct(getApplicationContext(), products);
+                recyclerView.setAdapter(adapter);
             }
         };
 
-            // set up the RecyclerView
-            RecyclerView recyclerView = findViewById(R.id.tvNameProductRow);
-        recyclerView.setLayoutManager(new
 
-            LinearLayoutManager(this));
-            adapter =new
+        ActionBar actionBar = getSupportActionBar();
 
-            AdapterProduct(this,products);
-        recyclerView.setAdapter(adapter);
+        actionBar.setTitle("productActivity");
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+    }
 
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            //case R.id.miSearch:
+            // User chose the "Settings" item, show the app settings UI...
+            //return true;
+
+            case R.id.profile:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                return true;
+
+            case R.id.misitting:
+
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     private void readData() {

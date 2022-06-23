@@ -20,20 +20,16 @@ public class SignupActivity2 extends AppCompatActivity {
         private String etConfirmPassword;
         private FirebaseAuth auth;
 
-        public SignupActivity2(EditText etUsername, EditText etPassword, String etConfirmPassword, FirebaseAuth auth) {
-            this.etUsername = etUsername;
-            this.etPassword = etPassword;
-            this.etConfirmPassword = etConfirmPassword;
-            this.auth = auth;
-        }
-
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_signup2);
+
+            connectComponents();
         }
-        private connectComponents(){
+
+        private void connectComponents() {
             etUsername = findViewById(R.id.etUsername);
             etPassword  = findViewById(R.id.etpassword);
         }
