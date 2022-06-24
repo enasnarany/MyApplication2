@@ -18,7 +18,7 @@ public class SignupActivity2 extends AppCompatActivity {
         private EditText etUsername;
         private EditText etPassword;
         private String etConfirmPassword;
-        private FirebaseAuth auth;
+        private FirebaseServices fbs;
 
 
         @Override
@@ -32,6 +32,7 @@ public class SignupActivity2 extends AppCompatActivity {
         private void connectComponents() {
             etUsername = findViewById(R.id.etUsername);
             etPassword  = findViewById(R.id.etpassword);
+            fbs = FirebaseServices.getInstance();
         }
 
 
@@ -47,7 +48,7 @@ public class SignupActivity2 extends AppCompatActivity {
                 Toast.makeText(this, "Password do not match!!", Toast.LENGTH_SHORT).show();
                 return;
             }
-            auth.createUserWithEmailAndPassword(username, password)
+            fbs.getAuth().createUserWithEmailAndPassword(username, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

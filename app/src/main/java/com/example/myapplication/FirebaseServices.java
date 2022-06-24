@@ -18,8 +18,8 @@ public class FirebaseServices {
         private FirebaseFirestore firestore;
         private FirebaseStorage storage;
 
-        public FirebaseServices getAuth() {
-            return instance;
+        public FirebaseAuth getAuth() {
+            return auth;
         }
 
         public FirebaseFirestore getFirestore() {
@@ -44,10 +44,10 @@ public class FirebaseServices {
 
             return instance;
         }
-
+/*
         public AddProduct collection(String products) {
             return null;
-        }
+        } */
     }
 
 

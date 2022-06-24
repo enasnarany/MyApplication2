@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -7,30 +8,44 @@
     <Button
 
         android:id="@+id/Signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Signup"
+        android:layout_width="361dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginBottom="576dp"
         android:onClick="signup"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="340dp" />
+        android:scrollbarSize="50dp"
+        android:text="Signup"
+        android:textSize="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/etpassword"
+        app:layout_constraintTop_toBottomOf="@+id/etpassword" />
 
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="423dp"
+        android:layout_marginTop="608dp"
+        android:layout_marginBottom="63dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="163dp" />
+        android:textSize="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/etpassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etpassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="65dp"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="228dp" />
+        android:textSize="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/Signup"
+        app:layout_constraintEnd_toEndOf="@+id/etUsername"
+        app:layout_constraintStart_toStartOf="@+id/etUsername"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
 </androidx.constraintlayout.widget.ConstraintLayout>

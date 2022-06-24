@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "292953841350",
+    "project_id": "enas-d32c7",
+    "storage_bucket": "enas-d32c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292953841350:android:2ac8a336ed3980862e01c7",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292953841350-5g0kuif56dkg75h08c3klevi2o2rdr3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS80HU0gZK_cqIMAj_OUoFPHjy-hyFpzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292953841350-5g0kuif56dkg75h08c3klevi2o2rdr3g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

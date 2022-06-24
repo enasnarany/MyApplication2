@@ -10,13 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".AddProduct2"
+            android:exported="false" />
+        <activity
             android:name=".AllProductActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddProduct"
-            android:exported="false" />
-        <activity
-            android:name=".ImageView"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

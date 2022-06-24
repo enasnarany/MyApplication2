@@ -1,17 +1,16 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.net.Uri;
-import android.os.Bundle;
-import androidx.annotation.NonNull;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +30,9 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.UUID;
 
-public class AddProduct extends AppCompatActivity {
+public class AddProduct2 extends AppCompatActivity {
+
+
 
     private static final String TAG = "AddProductActivity";
     private EditText etName, etColor, etSize, etPrice,etCategory,etProducttype;
@@ -46,7 +47,7 @@ public class AddProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_Product);
+        setContentView(R.layout.activity_add_product2);
         connectComponents();
     }
 
@@ -72,7 +73,7 @@ public class AddProduct extends AppCompatActivity {
         Size = etSize.getText().toString();
         description =
 
-        Price = etPrice.getText().toString();
+                Price = etPrice.getText().toString();
         category = spCat.getSelectedItem().toString();
         if (ivPhoto.getDrawable() == null)
             photo = "no_image";
@@ -87,7 +88,7 @@ public class AddProduct extends AppCompatActivity {
 
         Product product = new Product (name,photo,Size,Color,Price,type,description);
         fbs.getFirestore().collection("Products")
-               .add(product)
+                .add(product)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 
                     @Override
@@ -182,7 +183,7 @@ public class AddProduct extends AppCompatActivity {
                                     // Dismiss dialog
                                     progressDialog.dismiss();
                                     Toast
-                                            .makeText(AddProduct.this,
+                                            .makeText(AddProduct2.this,
                                                     "Image Uploaded!!",
                                                     Toast.LENGTH_SHORT)
                                             .show();
@@ -197,7 +198,7 @@ public class AddProduct extends AppCompatActivity {
                             // Error, Image not uploaded
                             progressDialog.dismiss();
                             Toast
-                                    .makeText(AddProduct.this,
+                                    .makeText(AddProduct2.this,
                                             "Failed " + e.getMessage(),
                                             Toast.LENGTH_SHORT)
                                     .show();
@@ -224,4 +225,7 @@ public class AddProduct extends AppCompatActivity {
         }
     }
 }
+
+
+
 

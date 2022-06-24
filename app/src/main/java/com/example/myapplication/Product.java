@@ -2,12 +2,14 @@ package com.example.myapplication;
 
 import android.util.Size;
 
+import java.io.Serializable;
+
 enum ProductCategory
 {
     lipsticks, creams, makeup
 }
 
-public class Product {
+public class Product implements Serializable {
     private String Description;
     private String name;
     private String photo;

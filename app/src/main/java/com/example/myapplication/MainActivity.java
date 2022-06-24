@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,152 +20,68 @@ import com.google.firebase.firestore.core.View;
 public class MainActivity extends AppCompatActivity {
 
     private EditText etUsername , etPassword;
-    private FirebaseAuth auth;
+    private FirebaseServices fbs;
+    private Utilities utils;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+        connectComponents();
+
+    }
+private void connectComponents(){
         etUsername = findViewById(R.id.etUsernameMain);
-        etPassword = findViewById(R.id.etpasswordmain);
-        auth = FirebaseAuth.getInstance();
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
+        etPassword = findViewById(R.id.etPasswordMain);
+        //utils = Utilities.getInstance();
+        fbs = FirebaseServices.getInstance();
+}
 
-    public boolean onCreateOptionsMenu(android.view.View view)
-    {
-        MenuInflater inflater=getMenuInflater();
-        Menu menu = null;
-        inflater.inflate(R.menu.toolbar,menu);
-        return true;
-    }
+public void login (View view) {
+    String username = etUsername.getText().toString();
+    String password = etPassword.getText().toString();
 
-
-    public void login(View view) {
-        String username = etUsername.getText().toString();
-        String password = etPassword.getText().toString();
-        if (username.trim().isEmpty() || password.trim().isEmpty()) {
-            Toast.makeText(this, "Username or password is missing", Toast.LENGTH_SHORT).show();
+        /*
+        if (username.trim().isEmpty() || password.trim().isEmpty())
+        {
+            Toast.makeText(this,"Some fields are empty!",Toast.LENGTH_SHORT).show();
             return;
         }
+        if (!utils.validateEmail(username)|| !utils.validatePassword(password))
 
-        // TODO: add auth login...
-        /*
-        auth.signInWithEmailAndPassword(username, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+         Toast.makeText(context:this,"Incorrect username or password!",Toast.LENGTH_SHORT).show();
 
+          return;*/
+
+    fbs.getAuth().signInWithEmailAndPassword(username, password)
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Intent i = new Intent(MainActivity.this, AllProductActivity.class);
+                        startActivity(i);
+
+                    } else {
+                        Toast.makeText(MainActivity.this, R.string.err_incorrect_username_password, Toast.LENGTH_SHORT).show();
                     }
-
-
-                    @Override
-                    public void OnCoplete(@NonNull Task<AuthResult> task) {
-                    }
-
-                        if(Task.isSuccessful())
-
-                    {
-                             else{
-                        Toast.makeText(MainActivity.this, "Username or password is empty!", Toast.LENGTH_SHORT).show();
-                        JH GGHreturn;
-                    }
-
-
-                    }
-
-                    ;
-                }*/
+                }
+            });
     }
 
-
-    public boolean varifyEmail(String email) {
-        String[] splitString = email.split("@");
-        if (splitString.length != 2) {
-            Toast.makeText(MainActivity.this, "incorrect username or password", Toast.LENGTH_SHORT).show();
-            return false;
-
-
-        }
-        String username = splitString[0];
-        String domain = splitString[1];
-        String[] spiltusername = username.split("");
-        if (spiltusername.length != 1) {
-            Toast.makeText(MainActivity.this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        char first = username.charAt(0);
-        if (!(first >= 'a' & first <= 'z' || first == '_')) {
-            Toast.makeText(MainActivity.this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (username.length() > 70) {
-            Toast.makeText(MainActivity.this, "incorrect", Toast.LENGTH_SHORT).show();
-            return false;
-
-        }
-        if (username.length() < 3) {
-            Toast.makeText(MainActivity.this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        for (int i = 0; i < username.length(); i++) {
-            char p = username.charAt(i);
-            if (!(p >= 'a' & p <= 'z' || p <= 'A' & p <= 'z' || p == '_' || p >= '0' & p <= '9')) {
-                Toast.makeText(MainActivity.this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-
-        }
-        if (!(domain.split(".").length>=2 && domain.split(".").length<=5))
-            return false;
-        char firstd = domain.charAt(0);
-        if (!(firstd>='a' & firstd<='z' || firstd=='_' || firstd>= 'A' & firstd<'Z')){
-            Toast.makeText(MainActivity.this,"Username or email is false check again",Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        String[] dot = domain.split(".");
-        String laststring = dot[dot.length-1];
-        for (int i = 0 ; i < laststring.length() ; i ++){
-            char p = laststring.charAt(i);
-            if (!(p>='a' & p<='z' || p>='A' & p<='Z')){
-                Toast.makeText(MainActivity.this,"username or email is false check again", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
-        return true;
+    public void gotoSignup (View view){
+        Intent i = new Intent(this, SignupActivity2.class);
+        startActivity(i);
     }
 
-    public boolean validatePassword(String password) {
-        int countsmall = 0, countcapital = 0, countwildcard = 0, countnumber = 0;
-        if (password.length() > 30) {
-            Toast.makeText(MainActivity.this, "username or password are incorrect", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (password.length() < 8) {
-            Toast.makeText(MainActivity.this, "username or password are incorrect ", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        for (int i = 0; i < password.length(); i++) {
-
-            char p = password.charAt(i);
-            if (p >= 'a' & p <= 'z') countsmall++;
-            if (p <= 'A' & p <= 'Z') countcapital++;
-            if (!(p >= 'a' & p <= 'z' || p <= 'A' & p <= 'Z' || p >= '0' & p <= '9'))
-                countwildcard++;
-            if (p >= '0' & p <= '9') countnumber++;
-
-        }
-        if (countsmall == 0 || countcapital == 0 || countwildcard == 0 || countnumber == 0) {
-            Toast.makeText(MainActivity.this,"username or password are incorrect", Toast.LENGTH_SHORT).show();
-
-            return false;
-
-        }
-        return true;
-
-
+    public void gotoAddProducts (View view){
+        Intent i = new Intent(this, AddProduct2.class);
+        startActivity(i);
     }
+
+    public void gotoAllProducts (View view){
+        Intent i = new Intent(this, AllProductActivity.class);
+        startActivity(i);
     }
+}
 

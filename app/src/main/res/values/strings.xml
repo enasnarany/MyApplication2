@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="err_fields_empty">some fields are empty!</string>
+    <string name="err_incorrect_username_password">Incorrect username or password!</string>
 </resources>
