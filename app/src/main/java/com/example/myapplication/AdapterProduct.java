@@ -1,8 +1,11 @@
 package com.example.myapplication;
 
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,8 @@ import androidx.constraintlayout.solver.ArrayLinkedVariables;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -36,14 +41,13 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             Product product = mData.get(position);
             Intent i = new Intent(context, ProductDetailsActivity.class);
             i.putExtra("product", product);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         }
 
     };
 
     // data is passed into the constructor
-   public AdapterProduct(Context context, List<Product> data) {
+    AdapterProduct(Context context, List<Product> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.context = context;
@@ -53,25 +57,33 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     // inflates the row layout from xml when needed
     @Override
     public AdapterProduct.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.row, parent, false);
+        View view = mInflater.inflate(R.layout.row_product, parent, false);
         return new AdapterProduct.ViewHolder(view);
     }
 
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(AdapterProduct.ViewHolder holder, int position) {
-        Product rest = mData.get(position);
-        holder.tvName.setText(rest.getName());
-        //holder.ivPhoto.setImageDrawable(product.getPhoto());
-        //Picasso.get().load(rest.getPhoto()).into(holder.ivPhoto);
+        Product product = mData.get(position);
+        holder.tvName.setText(product.getName());
+        fbs.getStorage().getReference().child(product.getPhoto()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        @Override
+public void onSuccess(Uri uri){
+              //  Picasso.get().load(product.getPhoto()).into(holder.ivphoto);
+    }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(TAG, e.getMessage());
+            }
+        });
+
     }
 
 
     // total number of rows
     @Override
-    public int getItemCount() {
-        return mData.size();
-    }
+    public int getItemCount() { return mData.size(); }
 
 
     // stores and recycles views as they are scrolled off screen
@@ -79,7 +91,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         TextView tvName;
         ImageView ivPhoto;
 
-        ViewHolder(View itemView) {
+        ViewHolder(View itemView){
             super(itemView);
             tvName = itemView.findViewById(R.id.tvNameProductRow);
             ivPhoto = itemView.findViewById(R.id.ivPhotoProductRow);
@@ -91,6 +103,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
     }
+    Product getItem(int id){return mData.get(id);}
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
